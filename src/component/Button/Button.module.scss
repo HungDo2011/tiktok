@@ -60,6 +60,7 @@
     color: var(--primary);
     border-color: currentColor;
     border-color: var(--primary);
+    padding: 0;
 
     &:hover {
         background-color: rgba(254, 44, 85, 0.06);
