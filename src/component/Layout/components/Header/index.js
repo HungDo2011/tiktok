@@ -2,16 +2,13 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
-    faCircleXmark,
-    faCloudUpload,
+    faCoins,
     faEllipsisVertical,
     faGear,
     faGlobe,
     faKeyboard,
-    faMagnifyingGlass,
-    faSignOut,
-    faSpinner,
     faUser,
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -22,9 +19,10 @@ import styles from './Header.module.scss';
 import Button from '~/component/Button';
 import { Wrapper as PopperWrapper } from '~/component/Popper';
 import images from '~/assets/images';
+import Image from '~/component/Image';
 import AcountItem from '~/component/AcountItem';
 import Menu from '~/component/Popper/Menu';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { ClearIcon, InboxIcon, LoadingIcon, MessageIcon, SearchIcon, UploadIcon } from '~/component/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -86,7 +84,7 @@ function Header() {
             to: '/@hungdo',
         },
         {
-            icon: <FontAwesomeIcon icon={faTiktok} />,
+            icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Get coin',
             to: '/coin',
         },
@@ -129,12 +127,12 @@ function Header() {
                     <div className={cx('search')}>
                         <input placeholder="Search accounts and videos" spellCheck={false} />
                         <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
+                            <ClearIcon />
                         </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+                        <LoadingIcon className={cx('loading')} />
 
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </HeadlessTippy>
@@ -142,9 +140,19 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 0]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 0]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 0]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -156,7 +164,8 @@ function Header() {
                     )}
                     <Menu items={userMenu} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
+                                fallback="https://tse4.mm.bing.net/th?id=OIP.UOdatgpAE0mQV3-DTUUnhQAAAA&pid=Api"
                                 src="https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/e50cb5d0067961bbd8e4b22585d5b3ba.jpeg?x-expires=1652598000&x-signature=Mtavoelac5pA0vZMOBkubwxb4z4%3D"
                                 className={cx('user-avatar')}
                                 alt="avata"
